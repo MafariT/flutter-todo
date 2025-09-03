@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:todo/model/task.dart';
 import 'package:todo/pages/home_page.dart';
 
 void main() async {
   await Hive.initFlutter();
-  await Hive.openBox('todoBox');
+  Hive.registerAdapter(TaskAdapter()); 
+  await Hive.openBox<Task>('todoBox');
 
   runApp(const ToDo());
 }
@@ -32,6 +34,10 @@ class ToDo extends StatelessWidget {
           backgroundColor: Color(0xFF1F1F1F),
         ),
         dialogTheme: DialogThemeData(backgroundColor: Color(0xFF1F1F1F)),
+        snackBarTheme: SnackBarThemeData(
+          backgroundColor: Color(0xFF1F1F1F),
+          contentTextStyle: TextStyle(color: Theme.of(context).colorScheme.onPrimary)
+        )
       ),
 
       themeMode: ThemeMode.system,
