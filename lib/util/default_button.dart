@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 class DefaultButton extends StatelessWidget {
-  DefaultButton({super.key, required this.text, required this.onPressed});
+  const DefaultButton({super.key, required this.text, required this.onPressed});
 
   final String text;
-  VoidCallback onPressed;
+  final VoidCallback onPressed;
 
   @override
   Widget build(BuildContext context) {
