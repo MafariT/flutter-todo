@@ -13,7 +13,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final _controller = TextEditingController();
-  final _todoBox = Hive.box<Task>('todoBox'); // typed box
+  final _todoBox = Hive.box<Task>('todoBox');
 
   void _saveNewTask() {
     if (_controller.text.trim().isEmpty) return;
@@ -23,7 +23,10 @@ class _HomePageState extends State<HomePage> {
     Navigator.pop(context);
 
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text("Task added")),
+      const SnackBar(
+        duration: Duration(seconds: 1),
+        content: Text("Task added")
+      ),
     );
   }
 
@@ -45,10 +48,19 @@ class _HomePageState extends State<HomePage> {
     task.save();
   }
 
-  void _deleteTask(Task task) {
+  void _deleteTask(Task task, int index) {
     task.delete();
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text("Task deleted")),
+      SnackBar(
+        duration: const Duration(seconds: 2),
+        content: const Text("Task deleted"),
+        action: SnackBarAction(
+          label: "Undo",
+          onPressed:() {
+            _todoBox.put(index, task);
+          },
+        ),
+      ),
     );
   }
 
@@ -77,7 +89,7 @@ class _HomePageState extends State<HomePage> {
                 taskName: task.title,
                 taskCompleted: task.isDone,
                 onChanged: (value) => _toggleTask(task, value ?? false),
-                deleteTask: (context) => _deleteTask(task),
+                deleteTask: (context) => _deleteTask(task, index),
               );
             },
           );

@@ -14,7 +14,7 @@ class TodoTile extends StatelessWidget {
       padding: const EdgeInsets.only(left: 16, top: 16, right: 16),
       child: Slidable(
         endActionPane: ActionPane(
-          motion: StretchMotion(), 
+          motion: const StretchMotion(), 
           children: [
             SlidableAction(
               onPressed: deleteTask,
@@ -25,14 +25,14 @@ class TodoTile extends StatelessWidget {
           ]
         ),
         child: Material(
-          color: Color(0xFF1F1F1F),
+          color: const Color(0xFF1F1F1F),
           borderRadius: BorderRadius.circular(8),
           child: InkWell(
             onTap: () {
               onChanged!(!taskCompleted);
             },
             child: Container(
-              padding: EdgeInsets.all(8),
+              padding: const EdgeInsets.all(8),
               child: Row(
                 children: [
                   Checkbox(value: taskCompleted, onChanged: onChanged, activeColor: Theme.of(context).colorScheme.primary,),

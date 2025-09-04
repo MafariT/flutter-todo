@@ -33,9 +33,9 @@ class ToDo extends StatelessWidget {
         floatingActionButtonTheme: const FloatingActionButtonThemeData(
           backgroundColor: Color(0xFF1F1F1F),
         ),
-        dialogTheme: DialogThemeData(backgroundColor: Color(0xFF1F1F1F)),
+        dialogTheme: const DialogThemeData(backgroundColor: Color(0xFF1F1F1F)),
         snackBarTheme: SnackBarThemeData(
-          backgroundColor: Color(0xFF1F1F1F),
+          backgroundColor: const Color(0xFF1F1F1F),
           contentTextStyle: TextStyle(color: Theme.of(context).colorScheme.onPrimary)
         )
       ),
